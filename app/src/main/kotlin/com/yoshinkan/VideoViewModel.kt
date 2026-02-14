@@ -78,8 +78,7 @@ class VideoViewModel : ViewModel() {
                 setVideoPath(videoPath)
                 setOnPreparedListener { mp ->
                     this@VideoViewModel.videoDuration = mp.duration.toLong()
-                    this@VideoViewModel.isPlaying = true
-                    start()
+                    // Do NOT auto-start - wait for user to click Play button
                 }
                 setOnCompletionListener {
                     this@VideoViewModel.isPlaying = false
