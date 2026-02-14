@@ -126,12 +126,14 @@ fun VideoPlayerScreen(
                 Slider(
                     value = sliderPosition.toFloat(),
                     onValueChange = { newValue ->
-                        isSliderDragging = true  // Set flag immediately when user starts dragging
+                        isSliderDragging = true
+                        viewModelInstance.isUserSeeking = true  // Notify ViewModel that user is seeking
                         sliderPosition = newValue.toLong()
                         viewModelInstance.seekTo(newValue.toLong())
                     },
                     onValueChangeFinished = {
-                        isSliderDragging = false  // Clear flag when user finishes dragging
+                        isSliderDragging = false
+                        // ViewModel will clear isUserSeeking after 1 second
                     },
                     valueRange = 0f..viewModelInstance.videoDuration.toFloat(),
                     modifier = Modifier

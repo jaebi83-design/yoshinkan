@@ -13,6 +13,7 @@ class VideoViewModel : ViewModel() {
     private var mediaPlayer: MediaPlayer? = null
     var videoView: VideoView? = null
     private var lastSeekTime = 0L
+    var isUserSeeking by mutableStateOf(false)
 
     var isPlaying by mutableStateOf(false)
     var currentPosition by mutableStateOf(0L)
@@ -130,7 +131,8 @@ class VideoViewModel : ViewModel() {
             videoView?.apply {
                 seekTo(positionMs)
                 this@VideoViewModel.currentPosition = position
-                // Record seek time to prevent progress updater from overriding
+                // Mark that user is seeking to disable progress updates
+                this@VideoViewModel.isUserSeeking = true
                 this@VideoViewModel.lastSeekTime = System.currentTimeMillis()
             }
         } catch (e: Exception) {
@@ -157,14 +159,21 @@ class VideoViewModel : ViewModel() {
             while (isPlaying && videoView != null) {
                 try {
                     val currentTime = System.currentTimeMillis()
-                    // Don't update position for 500ms after a seek to give it time to complete
-                    if (currentTime - lastSeekTime > 500) {
+
+                    // If user is actively seeking, don't update position at all
+                    if (isUserSeeking) {
+                        // Wait for seek to complete (1 second after last seek action)
+                        if (currentTime - lastSeekTime > 1000) {
+                            isUserSeeking = false
+                        }
+                    } else {
+                        // Only update if we're not seeking
                         val videoCurrentPos = videoView?.currentPosition?.toLong() ?: 0L
-                        // Only update if position is reasonable
-                        if (videoCurrentPos >= 0 && Math.abs(videoCurrentPos - currentPosition) > 100) {
+                        if (videoCurrentPos >= 0) {
                             currentPosition = videoCurrentPos
                         }
                     }
+
                     Thread.sleep(100)
                 } catch (e: Exception) {
                     break
