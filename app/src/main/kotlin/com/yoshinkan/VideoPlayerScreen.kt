@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -46,15 +47,18 @@ fun VideoPlayerScreen(
     val context = LocalContext.current
     val viewModelInstance: VideoViewModel = viewModel()
     var sliderPosition by remember { mutableLongStateOf(0L) }
+    var isSliderDragging by remember { mutableStateOf(false) }
 
     // Load video when screen appears
     LaunchedEffect(attack, technique, energy) {
         viewModelInstance.loadVideo(context, attack, technique, energy)
     }
 
-    // Update slider position as video plays
+    // Update slider position as video plays (but not while user is dragging)
     LaunchedEffect(viewModelInstance.currentPosition) {
-        sliderPosition = viewModelInstance.currentPosition
+        if (!isSliderDragging) {
+            sliderPosition = viewModelInstance.currentPosition
+        }
     }
 
     Column(
@@ -121,13 +125,24 @@ fun VideoPlayerScreen(
             Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                 Slider(
                     value = sliderPosition.toFloat(),
-                    onValueChange = {
-                        sliderPosition = it.toLong()
-                        viewModelInstance.seekTo(it.toLong())
+                    onValueChange = { newValue ->
+                        sliderPosition = newValue.toLong()
+                        viewModelInstance.seekTo(newValue.toLong())
+                    },
+                    onValueChangeFinished = {
+                        isSliderDragging = false
                     },
                     valueRange = 0f..viewModelInstance.videoDuration.toFloat(),
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp)
                 )
+                // Track when slider starts being dragged
+                LaunchedEffect(sliderPosition) {
+                    if (viewModelInstance.currentPosition != sliderPosition) {
+                        isSliderDragging = true
+                    }
+                }
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()

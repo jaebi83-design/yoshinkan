@@ -126,8 +126,11 @@ class VideoViewModel : ViewModel() {
 
     fun seekTo(position: Long) {
         try {
-            videoView?.seekTo(position.toInt())
-            currentPosition = position
+            val positionMs = position.toInt()
+            videoView?.apply {
+                seekTo(positionMs)
+                this@VideoViewModel.currentPosition = position
+            }
         } catch (e: Exception) {
             errorMessage = "Seek error: ${e.message}"
         }
@@ -136,7 +139,8 @@ class VideoViewModel : ViewModel() {
     fun stop() {
         try {
             videoView?.apply {
-                stopPlayback()
+                pause()  // Pause instead of stopPlayback to keep controls active
+                seekTo(0)  // Seek to beginning
                 this@VideoViewModel.isPlaying = false
                 this@VideoViewModel.currentPosition = 0L
             }
@@ -150,7 +154,11 @@ class VideoViewModel : ViewModel() {
         Thread {
             while (isPlaying && videoView != null) {
                 try {
-                    currentPosition = videoView?.currentPosition?.toLong() ?: 0L
+                    val videoCurrentPos = videoView?.currentPosition?.toLong() ?: 0L
+                    // Only update if we're not seeking (allow small drift for playback)
+                    if (videoCurrentPos >= 0) {
+                        currentPosition = videoCurrentPos
+                    }
                     Thread.sleep(100)
                 } catch (e: Exception) {
                     break
