@@ -54,10 +54,24 @@ fun VideoPlayerScreen(
         viewModelInstance.loadVideo(context, attack, technique, energy)
     }
 
-    // Update slider position as video plays (but not while user is dragging)
-    LaunchedEffect(viewModelInstance.currentPosition) {
-        if (!isSliderDragging) {
-            sliderPosition = viewModelInstance.currentPosition
+    // Update slider position as video plays by directly reading from VideoView
+    LaunchedEffect(viewModelInstance.isPlaying) {
+        if (viewModelInstance.isPlaying) {
+            // Poll VideoView directly for position when playing
+            val updateThread = Thread {
+                while (viewModelInstance.isPlaying && viewModelInstance.videoView != null) {
+                    try {
+                        if (!isSliderDragging) {
+                            val videoPos = viewModelInstance.videoView?.currentPosition?.toLong() ?: 0L
+                            sliderPosition = videoPos
+                        }
+                        Thread.sleep(500)  // Update every 500ms
+                    } catch (e: Exception) {
+                        break
+                    }
+                }
+            }
+            updateThread.start()
         }
     }
 

@@ -154,23 +154,25 @@ class VideoViewModel : ViewModel() {
     }
 
     private fun startProgressUpdater() {
-        // Update position every 100ms while playing
+        // Update position every 500ms while playing (but only after seek completes)
         Thread {
+            var lastUpdateTime = 0L
             while (isPlaying && videoView != null) {
                 try {
                     val currentTime = System.currentTimeMillis()
 
-                    // If user is actively seeking, don't update position at all
-                    if (isUserSeeking) {
-                        // Wait for seek to complete (1 second after last seek action)
-                        if (currentTime - lastSeekTime > 1000) {
-                            isUserSeeking = false
-                        }
-                    } else {
-                        // Only update if we're not seeking
+                    // Only update position if:
+                    // 1. User is not actively seeking
+                    // 2. At least 2 seconds have passed since last seek
+                    // 3. At least 500ms since last update
+                    if (!isUserSeeking &&
+                        (currentTime - lastSeekTime > 2000) &&
+                        (currentTime - lastUpdateTime > 500)) {
+
                         val videoCurrentPos = videoView?.currentPosition?.toLong() ?: 0L
                         if (videoCurrentPos >= 0) {
                             currentPosition = videoCurrentPos
+                            lastUpdateTime = currentTime
                         }
                     }
 
