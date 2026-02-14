@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    SelectionScreen()
+                    AppScreen()
                 }
             }
         }
@@ -39,7 +39,46 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun SelectionScreen() {
+fun AppScreen() {
+    var currentScreen by remember { mutableStateOf<Screen>(Screen.Selection) }
+    var selectedAttack by remember { mutableStateOf<String?>(null) }
+    var selectedTechnique by remember { mutableStateOf<String?>(null) }
+    var selectedEnergy by remember { mutableStateOf<String?>(null) }
+
+    when (currentScreen) {
+        is Screen.Selection -> {
+            SelectionScreen(
+                onPlayClick = { attack, technique, energy ->
+                    selectedAttack = attack
+                    selectedTechnique = technique
+                    selectedEnergy = energy
+                    currentScreen = Screen.VideoPlayer(attack, technique, energy)
+                }
+            )
+        }
+        is Screen.VideoPlayer -> {
+            val screen = currentScreen as Screen.VideoPlayer
+            VideoPlayerScreen(
+                attack = screen.attack,
+                technique = screen.technique,
+                energy = screen.energy,
+                onBackClick = {
+                    currentScreen = Screen.Selection
+                }
+            )
+        }
+    }
+}
+
+sealed class Screen {
+    data object Selection : Screen()
+    data class VideoPlayer(val attack: String, val technique: String, val energy: String) : Screen()
+}
+
+@Composable
+fun SelectionScreen(
+    onPlayClick: (attack: String, technique: String, energy: String) -> Unit
+) {
     var selectedAttack by remember { mutableStateOf<String?>(null) }
     var selectedTechnique by remember { mutableStateOf<String?>(null) }
     var selectedEnergy by remember { mutableStateOf<String?>(null) }
@@ -156,7 +195,11 @@ fun SelectionScreen() {
         }
 
         Button(
-            onClick = { /* Play video */ },
+            onClick = {
+                if (selectedAttack != null && selectedTechnique != null && selectedEnergy != null) {
+                    onPlayClick(selectedAttack!!, selectedTechnique!!, selectedEnergy!!)
+                }
+            },
             enabled = isAllSelected,
             modifier = Modifier
                 .fillMaxWidth()

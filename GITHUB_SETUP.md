@@ -23,7 +23,7 @@ After creating the repository, you'll see a page with push instructions. Instead
 
 ```bash
 cd "C:\Users\Jim\Documents\AI Programming\Yoshinkan"
-git remote add origin https://github.com/YOUR_USERNAME/Yoshinkan.git
+git remote add origin https://github.com/jaebi83-design/Yoshinkan.git
 git branch -M main
 git push -u origin main
 ```
@@ -33,7 +33,7 @@ git push -u origin main
 ### 3. Verify Push
 
 After the push completes, verify on GitHub:
-1. Go to https://github.com/YOUR_USERNAME/Yoshinkan
+1. Go to https://github.com/jaebi83-design/Yoshinkan
 2. Confirm you see:
    - All project files
    - Commit message

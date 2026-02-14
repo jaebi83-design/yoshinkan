@@ -1,0 +1,126 @@
+================================================================================
+YOSHINKAN VIDEO MANIFEST GENERATOR - QUICK START
+================================================================================
+
+WHAT THIS TOOL DOES:
+  Scans your video directory and creates a manifest file so the Yoshinkan
+  app knows which videos are available.
+
+================================================================================
+STEP 1: OPEN COMMAND PROMPT
+================================================================================
+
+  Windows:
+  1. Press: Windows Key + R
+  2. Type: cmd
+  3. Press: Enter
+
+  You should see a black window with a command prompt.
+
+================================================================================
+STEP 2: NAVIGATE TO THE TOOLS FOLDER
+================================================================================
+
+  In Command Prompt, type:
+
+  cd "C:\Users\Jim\Documents\AI Programming\Yoshinkan\tools"
+
+  Then press: Enter
+
+  You should see the path change to show you're in the tools folder.
+
+================================================================================
+STEP 3: RUN THE MANIFEST GENERATOR
+================================================================================
+
+  In Command Prompt, type:
+
+  generate_manifest.bat "C:\Users\Jim\claude-skills\video-decomposer\data\Tachi Waza - Clean"
+
+  Then press: Enter
+
+  (You can replace the path with your actual video directory path if different)
+
+================================================================================
+WHAT HAPPENS NEXT
+================================================================================
+
+  The tool will:
+
+  1. Scan your video directory
+  2. Find all .mp4 files
+  3. Parse the filenames
+  4. Create video_manifest.json
+  5. Show you a list of videos found
+
+  Example output:
+
+    Generating video manifest...
+    Scanning directory: C:\Users\Jim\...
+    Found 48 video files
+    Manifest saved to: C:\Users\Jim\...\video_manifest.json
+
+    Video Summary:
+      - KATA_MOCHI_HIJI_SHIME_ICHI.mp4
+      - KATA_MOCHI_HIJI_SHIME_NI.mp4
+      - SUIGETSU_ZUKI_IKKAJO_OSAE_ICHI.mp4
+      ... (more videos)
+
+================================================================================
+SUCCESS!
+================================================================================
+
+  If you see "Success!" message, the manifest was created!
+
+  The manifest file is saved in your video directory:
+  C:\Users\Jim\claude-skills\video-decomposer\data\Tachi Waza - Clean\video_manifest.json
+
+================================================================================
+NEXT STEP: USE IN YOSHINKAN APP
+================================================================================
+
+  1. Go back to Android Studio
+  2. The app will automatically use the manifest
+  3. Users can now select videos from the app!
+
+================================================================================
+UPDATING VIDEOS LATER
+================================================================================
+
+  When you add/remove/change videos:
+
+  1. Modify your video files
+  2. Run the generator again (same 3 steps above)
+  3. Restart the Yoshinkan app
+  4. New videos available!
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+  Problem: "Command not recognized" or "cannot find batch file"
+  Solution: Make sure you're in the right directory (step 2)
+
+  Problem: "No valid video files found"
+  Solution: Check video naming - must be UPPERCASE with underscores
+  Example: KATA_MOCHI_HIJI_SHIME_ICHI.mp4 (correct)
+  Example: kata_mochi_hiji_shime_ichi.mp4 (wrong - lowercase)
+
+  Problem: Kotlin not found
+  Solution: Need Kotlin installed (consult with technical support)
+
+================================================================================
+NEED MORE HELP?
+================================================================================
+
+  Read the full documentation: README_TOOL.md
+
+  Expected video filename format:
+  {ATTACK}_{TECHNIQUE}_{ENERGY}.mp4
+
+  Example:
+  SUIGETSU_ZUKI_IKKAJO_OSAE_ICHI.mp4
+  KATA_MOCHI_SHIHO_NAGE_NI.mp4
+  RYOTE_MOCHI_IRIMI_NAGE_ICHI.mp4
+
+================================================================================
