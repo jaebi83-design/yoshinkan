@@ -1,5 +1,6 @@
 package com.yoshinkan
 
+import android.widget.VideoView
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -32,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
@@ -84,40 +86,27 @@ fun VideoPlayerScreen(
             )
         }
 
-        // Video placeholder/display area
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp)
-                .background(Color.DarkGray),
-            contentAlignment = Alignment.Center
-        ) {
-            if (viewModelInstance.errorMessage == null) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Text(
-                        "Video Player",
-                        style = MaterialTheme.typography.headlineSmall,
-                        color = Color.White
-                    )
-                    Text(
-                        viewModelInstance.videoFileName,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Color.LightGray,
-                        modifier = Modifier.padding(top = 8.dp)
-                    )
-                    if (viewModelInstance.videoDuration > 0) {
-                        Text(
-                            "Duration: ${formatTime(viewModelInstance.videoDuration)}",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = Color.LightGray,
-                            modifier = Modifier.padding(top = 4.dp)
-                        )
+        // Video display area with VideoView
+        if (viewModelInstance.errorMessage == null) {
+            AndroidView(
+                factory = { context ->
+                    VideoView(context).apply {
+                        viewModelInstance.videoView = this
                     }
-                }
-            } else {
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(400.dp)
+                    .background(Color.Black)
+            )
+        } else {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(400.dp)
+                    .background(Color.DarkGray),
+                contentAlignment = Alignment.Center
+            ) {
                 Text(
                     viewModelInstance.errorMessage ?: "",
                     style = MaterialTheme.typography.bodyMedium,
