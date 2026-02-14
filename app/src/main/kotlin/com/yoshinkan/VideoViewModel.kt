@@ -76,16 +76,16 @@ class VideoViewModel : ViewModel() {
             videoView?.apply {
                 setVideoPath(videoPath)
                 setOnPreparedListener { mp ->
-                    videoDuration = mp.duration.toLong()
-                    isPlaying = true
+                    this@VideoViewModel.videoDuration = mp.duration.toLong()
+                    this@VideoViewModel.isPlaying = true
                     start()
                 }
                 setOnCompletionListener {
-                    isPlaying = false
-                    currentPosition = 0L
+                    this@VideoViewModel.isPlaying = false
+                    this@VideoViewModel.currentPosition = 0L
                 }
                 setOnErrorListener { _, what, extra ->
-                    errorMessage = "VideoView Error: $what"
+                    this@VideoViewModel.errorMessage = "VideoView Error: $what"
                     true
                 }
             }
