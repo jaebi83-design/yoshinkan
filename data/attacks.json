@@ -1,0 +1,84 @@
+{
+  "attacks": [
+    {
+      "id": 1,
+      "name": "Kata Mochi",
+      "displayName": "Kata Mochi"
+    },
+    {
+      "id": 2,
+      "name": "Katate Ayagyaku Mochi",
+      "displayName": "Katate Ayagyaku Mochi"
+    },
+    {
+      "id": 3,
+      "name": "Katate Ayajun Mochi",
+      "displayName": "Katate Ayajun Mochi"
+    },
+    {
+      "id": 4,
+      "name": "Katate Mochi",
+      "displayName": "Katate Mochi"
+    },
+    {
+      "id": 5,
+      "name": "Mune Mochi",
+      "displayName": "Mune Mochi"
+    },
+    {
+      "id": 6,
+      "name": "RyoKata Mochi",
+      "displayName": "RyoKata Mochi"
+    },
+    {
+      "id": 7,
+      "name": "RyoSode Mochi",
+      "displayName": "RyoSode Mochi"
+    },
+    {
+      "id": 8,
+      "name": "Ryote Mochi",
+      "displayName": "Ryote Mochi"
+    },
+    {
+      "id": 9,
+      "name": "Shomen Uchi",
+      "displayName": "Shomen Uchi"
+    },
+    {
+      "id": 10,
+      "name": "Sode Mochi",
+      "displayName": "Sode Mochi"
+    },
+    {
+      "id": 11,
+      "name": "Suigetsu Zuki",
+      "displayName": "Suigetsu Zuki"
+    },
+    {
+      "id": 12,
+      "name": "Ushiro Waza Eri Mochi",
+      "displayName": "Ushiro Waza Eri Mochi"
+    },
+    {
+      "id": 13,
+      "name": "Ushiro Waza Katate Eri Mochi",
+      "displayName": "Ushiro Waza Katate Eri Mochi"
+    },
+    {
+      "id": 14,
+      "name": "Ushiro Waza RyoHiji Mochi",
+      "displayName": "Ushiro Waza RyoHiji Mochi"
+    },
+    {
+      "id": 15,
+      "name": "Ushiro Waza Ryote Mochi",
+      "displayName": "Ushiro Waza Ryote Mochi"
+    },
+    {
+      "id": 16,
+      "name": "Yokomen Uchi",
+      "displayName": "Yokomen Uchi"
+    }
+  ]
+}

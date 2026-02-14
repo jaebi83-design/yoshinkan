@@ -1,0 +1,25 @@
+# Gradle files
+.gradle/
+build/
+*.gradle.kts~
+
+# Android Studio
+.idea/
+*.iml
+*.iws
+*.ipr
+local.properties
+.DS_Store
+
+# Build outputs
+bin/
+gen/
+out/
+
+# Compiled files
+*.class
+*.dex
+*.apk
+
+# Logs
+*.log

@@ -1,0 +1,59 @@
+{
+  "videoNamingConvention": {
+    "pattern": "{ATTACK}_{TECHNIQUE}_{ENERGY}.mp4",
+    "example": "SUIGETSU_ZUKI_IKKAJO_OSAE_ICHI.mp4",
+    "components": [
+      {
+        "position": 1,
+        "name": "ATTACK",
+        "description": "Attack type in UPPERCASE with underscores"
+      },
+      {
+        "position": 2,
+        "name": "TECHNIQUE",
+        "description": "Technique name in UPPERCASE with underscores"
+      },
+      {
+        "position": 3,
+        "name": "ENERGY",
+        "description": "Energy flow (Ichi or Ni) in UPPERCASE"
+      }
+    ]
+  },
+  "attackNamingMap": {
+    "KATA_MOCHI": "Kata Mochi",
+    "KATATE_AYAGYAKU_MOCHI": "Katate Ayagyaku Mochi",
+    "KATATE_AYAJUN_MOCHI": "Katate Ayajun Mochi",
+    "KATATE_MOCHI": "Katate Mochi",
+    "MUNE_MOCHI": "Mune Mochi",
+    "RYOKATA_MOCHI": "RyoKata Mochi",
+    "RYOSODE_MOCHI": "RyoSode Mochi",
+    "RYOTE_MOCHI": "Ryote Mochi",
+    "SHOMEN_UCHI": "Shomen Uchi",
+    "SODE_MOCHI": "Sode Mochi",
+    "SUIGETSU_ZUKI": "Suigetsu Zuki",
+    "USHIRO_WAZA_ERI_MOCHI": "Ushiro Waza Eri Mochi",
+    "USHIRO_WAZA_KATATE_ERI_MOCHI": "Ushiro Waza Katate Eri Mochi",
+    "USHIRO_WAZA_RYOHIJI_MOCHI": "Ushiro Waza RyoHiji Mochi",
+    "USHIRO_WAZA_RYOTE_MOCHI": "Ushiro Waza Ryote Mochi",
+    "YOKOMEN_UCHI": "Yokomen Uchi"
+  },
+  "techniqueNamingMap": {
+    "HIJI_SHIME": "Hiji Shime",
+    "IKKAJO_OSAE": "Ikkajo Osae",
+    "IRIMI_TSUKI": "Irimi Tsuki",
+    "NIKAJO_OSAE": "Nikajo Osae",
+    "SANKAJO_OSAE": "Sankajo Osae",
+    "YONKAJO_OSAE": "Yonkajo Osae",
+    "IRIMI_NAGE": "Irimi Nage",
+    "KOTEGAESHI_OSAE": "Kotegaeshi Osae",
+    "HIJI_ATE": "Hiji Ate",
+    "SHIHO_NAGE": "Shiho Nage",
+    "SOKUMEN_IRIMI_NAGE": "Sokumen Irimi Nage",
+    "TENCHI_NAGE": "TenChi Nage"
+  },
+  "energyNamingMap": {
+    "ICHI": "Ichi",
+    "NI": "Ni"
+  }
+}

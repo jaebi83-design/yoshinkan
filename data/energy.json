@@ -1,0 +1,16 @@
+{
+  "energyFlows": [
+    {
+      "id": 1,
+      "name": "Ichi",
+      "displayName": "Ichi",
+      "description": "First energy flow"
+    },
+    {
+      "id": 2,
+      "name": "Ni",
+      "displayName": "Ni",
+      "description": "Second energy flow"
+    }
+  ]
+}

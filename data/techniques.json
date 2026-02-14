@@ -1,0 +1,64 @@
+{
+  "techniques": [
+    {
+      "id": 1,
+      "name": "Hiji Shime",
+      "displayName": "Hiji Shime"
+    },
+    {
+      "id": 2,
+      "name": "Ikkajo Osae",
+      "displayName": "Ikkajo Osae"
+    },
+    {
+      "id": 3,
+      "name": "Irimi Tsuki",
+      "displayName": "Irimi Tsuki"
+    },
+    {
+      "id": 4,
+      "name": "Nikajo Osae",
+      "displayName": "Nikajo Osae"
+    },
+    {
+      "id": 5,
+      "name": "Sankajo Osae",
+      "displayName": "Sankajo Osae"
+    },
+    {
+      "id": 6,
+      "name": "Yonkajo Osae",
+      "displayName": "Yonkajo Osae"
+    },
+    {
+      "id": 7,
+      "name": "Irimi Nage",
+      "displayName": "Irimi Nage"
+    },
+    {
+      "id": 8,
+      "name": "Kotegaeshi Osae",
+      "displayName": "Kotegaeshi Osae"
+    },
+    {
+      "id": 9,
+      "name": "Hiji Ate",
+      "displayName": "Hiji Ate"
+    },
+    {
+      "id": 10,
+      "name": "Shiho Nage",
+      "displayName": "Shiho Nage"
+    },
+    {
+      "id": 11,
+      "name": "Sokumen Irimi Nage",
+      "displayName": "Sokumen Irimi Nage"
+    },
+    {
+      "id": 12,
+      "name": "TenChi Nage",
+      "displayName": "TenChi Nage"
+    }
+  ]
+}
