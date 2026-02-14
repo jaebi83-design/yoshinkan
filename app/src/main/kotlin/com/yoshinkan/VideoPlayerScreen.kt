@@ -126,23 +126,18 @@ fun VideoPlayerScreen(
                 Slider(
                     value = sliderPosition.toFloat(),
                     onValueChange = { newValue ->
+                        isSliderDragging = true  // Set flag immediately when user starts dragging
                         sliderPosition = newValue.toLong()
                         viewModelInstance.seekTo(newValue.toLong())
                     },
                     onValueChangeFinished = {
-                        isSliderDragging = false
+                        isSliderDragging = false  // Clear flag when user finishes dragging
                     },
                     valueRange = 0f..viewModelInstance.videoDuration.toFloat(),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 8.dp)
                 )
-                // Track when slider starts being dragged
-                LaunchedEffect(sliderPosition) {
-                    if (viewModelInstance.currentPosition != sliderPosition) {
-                        isSliderDragging = true
-                    }
-                }
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()

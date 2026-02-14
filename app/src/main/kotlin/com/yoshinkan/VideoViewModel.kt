@@ -12,6 +12,7 @@ import java.io.File
 class VideoViewModel : ViewModel() {
     private var mediaPlayer: MediaPlayer? = null
     var videoView: VideoView? = null
+    private var lastSeekTime = 0L
 
     var isPlaying by mutableStateOf(false)
     var currentPosition by mutableStateOf(0L)
@@ -130,6 +131,8 @@ class VideoViewModel : ViewModel() {
             videoView?.apply {
                 seekTo(positionMs)
                 this@VideoViewModel.currentPosition = position
+                // Record seek time to prevent progress updater from overriding
+                this@VideoViewModel.lastSeekTime = System.currentTimeMillis()
             }
         } catch (e: Exception) {
             errorMessage = "Seek error: ${e.message}"
@@ -154,10 +157,14 @@ class VideoViewModel : ViewModel() {
         Thread {
             while (isPlaying && videoView != null) {
                 try {
-                    val videoCurrentPos = videoView?.currentPosition?.toLong() ?: 0L
-                    // Only update if we're not seeking (allow small drift for playback)
-                    if (videoCurrentPos >= 0) {
-                        currentPosition = videoCurrentPos
+                    val currentTime = System.currentTimeMillis()
+                    // Don't update position for 500ms after a seek to give it time to complete
+                    if (currentTime - lastSeekTime > 500) {
+                        val videoCurrentPos = videoView?.currentPosition?.toLong() ?: 0L
+                        // Only update if position is reasonable
+                        if (videoCurrentPos >= 0 && Math.abs(videoCurrentPos - currentPosition) > 100) {
+                            currentPosition = videoCurrentPos
+                        }
                     }
                     Thread.sleep(100)
                 } catch (e: Exception) {
