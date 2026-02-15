@@ -18,9 +18,19 @@ Yoshinkan is a production-ready Android application that allows Aikido students 
 | **Phase 2** | Video Playback with Controls | ✅ Complete | 2026-02-14 |
 | **Phase 3** | Remote Streaming & Advanced Features | ⏳ Planned | — |
 
-### Current Build: v1.1.0
+### Current Build: v1.2.0
 
-**Latest Changes (Phase 2 - Feb 14, 2026)**:
+**Latest Changes (Phase 2.1 - UI Enhancement - Feb 14, 2026)**:
+- ✅ Professional martial arts title header on Selection Screen
+- ✅ Option 1 design: Compact/Minimal (140px height, 18-20% of screen)
+- ✅ Navy blue gradient background (#1a1a2e → #0f0f1e)
+- ✅ Gold accented title "YOSHINKAN AIKIDO" with 28px bold font
+- ✅ Elegant gold divider line separator
+- ✅ "Tachi Waza Techniques" subtitle in off-white
+- ✅ Preview support for both Phone and Tablet layouts in Android Studio
+- ✅ Optimized spacing to prevent content cutoff in landscape mode
+
+**Phase 2 Features (Feb 14, 2026)**:
 - ✅ Complete video playback integration with VideoView
 - ✅ Play, pause, and stop controls
 - ✅ Progress slider with real-time position tracking
@@ -97,6 +107,14 @@ Yoshinkan/
 - **Dropdown Menus**: Scrollable selection with Material Design 3
 - **Smart Enable/Disable**: Play button only enabled when all selections made
 - **Selection Display**: Shows selected values for confirmation
+
+### ✨ Phase 2.1: Professional UI Enhancement (NEW)
+- **Professional Header**: "Yoshinkan Aikido Tachi Waza Techniques" title
+- **Design Pattern**: Option 1 Compact/Minimal (140px, 18-20% of screen)
+- **Navy Gradient Background**: Professional dark navy blue gradient
+- **Gold Accents**: Bold gold title with elegant divider line
+- **Responsive Layout**: Works on phones, tablets, and landscape orientation
+- **Android Studio Preview**: Phone and Tablet layout previews available
 
 ### ✨ Phase 2: Video Playback (NEW)
 - **Video Player Screen**: Full-screen video display with controls
@@ -313,11 +331,12 @@ MainActivity.kt
 - Shows selection details and error messages
 - Handles user interaction and slider dragging
 
-**MainActivity.kt** (220 lines)
-- App entry point
-- Navigation routing between screens
-- SelectionScreen composition
+**MainActivity.kt** (295+ lines)
+- App entry point and navigation routing
+- SelectionScreen composition with professional header
 - VideoPlayerScreen composition
+- Preview composables for Phone and Tablet layouts (Android Studio)
+- Professional header with navy gradient background and gold accents
 
 ### Performance Metrics
 - **App Size**: ~100MB (includes video assets)
@@ -478,9 +497,9 @@ This project is created for Aikido training purposes.
 | Property | Value |
 |----------|-------|
 | **Project Name** | Yoshinkan |
-| **Current Version** | 1.1.0 |
+| **Current Version** | 1.2.0 |
 | **Build Status** | ✅ Stable |
-| **Last Updated** | February 14, 2026 |
+| **Last Updated** | February 14, 2026 (UI Enhancement) |
 | **Target Platform** | Android 13+ |
 | **Minimum API Level** | 33 |
 | **Target API Level** | 35 |
